@@ -45,13 +45,6 @@ RUN mkdir -p logs \
 	&& ln -sf /dev/stderr logs/start.out \
     && chmod +x bin/docker-startup.sh
 
-ADD /plugin/peer/on-start.sh /
-ADD /plugin/peer/on-change.sh /
-ADD /plugin/peer/plugin.sh /
-COPY /plugin/peer/peer-finder /
-ADD /plugin/install.sh /
-RUN chmod -c 755 /install.sh /on-start.sh /on-change.sh /plugin.sh /peer-finder
-
 EXPOSE 8848
 EXPOSE 9848 8080
-ENTRYPOINT ["sh","/install.sh", "bin/docker-startup.sh"]
+ENTRYPOINT ["sh","bin/docker-startup.sh"]
